@@ -1,0 +1,37 @@
+[
+  {
+    "key": "firstName",
+    "validation": [
+      {
+        "validator": "required",
+        "value": true
+      },
+      {
+        "validator": "maxLength",
+        "value": 30
+      },
+      {
+        "validator": "minLength",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "key": "email",
+    "validation": [
+      {
+        "validator": "required",
+        "value": true
+      }
+    ]
+  },
+  {
+    "key": "make",
+    "validation": [
+      {
+        "validator": "required",
+        "value": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,27 @@
+[
+   {
+      "key":"firstName",
+      "type":"input",
+      "wrappers":["form-field-horizontal"],
+      "templateOptions":{
+         "label":"First Name"
+      }
+   },
+   {
+      "key":"lastName",
+      "type":"input",
+      "wrappers":["form-field-horizontal"],
+      "templateOptions":{
+         "label":"Last Name"
+      }
+   },
+   {
+      "key":"email",
+      "type":"input",
+		"wrappers":["form-field-horizontal"],
+      "templateOptions":{
+         "label":"Email",
+         "type":"email"
+      }
+   }
+]

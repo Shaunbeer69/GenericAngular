@@ -1,0 +1,43 @@
+[
+   {
+      "key":"vinChassis",
+      "type":"input",
+      "wrappers":["form-field-horizontal"],
+      "templateOptions":{
+         "label":"VinChassis Number",
+         "required":false,
+         "hideRequiredMarker":false
+      }
+   },
+   {
+      "key":"make",
+      "type":"input",
+      "wrappers":["form-field-horizontal"],
+      "templateOptions":{
+         "label":"Make",
+         "required":true,
+         "hideRequiredMarker":false
+      }
+   },
+   {
+      "key":"model",
+      "type":"input",
+      "wrappers":["form-field-horizontal"],
+      "templateOptions":{
+         "label":"Model",
+         "required":false,
+         "hideRequiredMarker":false
+      }
+   },
+   {
+      "key":"modelYear",
+      "type":"input",
+		"wrappers":["form-field-horizontal"],
+      "templateOptions":{
+         "label":"Model Year",
+          "type":"input",
+         "required":false,
+         "hideRequiredMarker":false
+      }
+   }
+]

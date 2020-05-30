@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+.btn:hover
+{
+    -webkit-box-shadow:0 0 5px rgba(0,0,0,0.5);
+    -moz-box-shadow:0 0 5px rgba(0,0,0,0.5);
+    box-shadow:0 0 5px rgba(0,0,0,0.5);
+}
+
+.mat-column- {
+    display: flex;
+    justify-content: flex-end;
+    }
+
+.mat-cell {
+    text-align: left !important;
+    justify-content:center;
+  }

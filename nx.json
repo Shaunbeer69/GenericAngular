@@ -1,0 +1,45 @@
+{
+  "npmScope": "ga",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "generic-application": {
+      "tags": []
+    },
+    "generic-application-e2e": {
+      "tags": [],
+      "implicitDependencies": ["generic-application"]
+    },
+    "ui": {
+      "tags": []
+    },
+    "core": {
+      "tags": []
+    },
+    "data-management": {
+      "tags": []
+    },
+    "security": {
+      "tags": []
+    },
+    "transaction": {
+      "tags": []
+    }
+  }
+}

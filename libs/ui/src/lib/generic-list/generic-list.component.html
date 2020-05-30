@@ -1,0 +1,8 @@
+<div *ngIf = "src != null">
+    <giap-data-table [dataSource] = 'src' [fields]="fields" [actions]='actions' [displayedColumns] = 'columns' [title] = "title"></giap-data-table> 
+</div>
+<div *ngIf = "src == null">
+    <div class="mt-5">
+        <h2 class="mx-auto text-center">Data not available, Check server</h2>
+    </div>
+</div>

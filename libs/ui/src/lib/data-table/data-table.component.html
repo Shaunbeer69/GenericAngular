@@ -1,0 +1,71 @@
+<!-- <h4>{{title}}</h4>
+<hr />
+<div style="width: 80%;" class="mx-auto mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <span *ngFor = "let col of displayedColumns">
+            <ng-container matColumnDef="{{col}}">
+                <th mat-header-cell *matHeaderCellDef> {{col | titlecase }} </th>
+                <td mat-cell *matCellDef="let element"> {{element[col]}} </td>
+            </ng-container>
+        </span>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div> -->
+<h4>{{title | titlecase}}</h4>
+<hr />
+<div style="width: 80%;" class="mat-elevation-z8 mx-auto">
+    <mat-form-field class=" m-3" style="width: 95%;">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+    </mat-form-field>
+    <table mat-table [dataSource]="displayDataSource" matSort >
+  
+      <span *ngFor = "let col of displayedColumns">
+        <ng-container matColumnDef="{{col}}">
+            <div *ngIf = "HasActions(col) == false">
+                <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> {{col | titlecase }} </th>
+                <td class="text-center" mat-cell *matCellDef="let element"> {{element[col]}} </td>
+            </div>
+            <div *ngIf = "HasActions(col) == true">
+                <th disabled class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header><span *ngIf="actions['edit'] == true || actions['view'] == true || actions['delete'] == true"> {{col | titlecase }} </span></th>
+                <td class="text-center" mat-cell *matCellDef="let element">
+                    <a data-toggle="modal" data-target="#Popup" (click)="ActionClick('edit',element)"><mat-icon *ngIf="actions['edit']" class="ml-2 mr-2 TableBtn" aria-hidden="false" aria-label="edit">edit</mat-icon></a>
+                    <a data-toggle="modal" data-target="#Popup" (click)="ActionClick('view',element)"><mat-icon *ngIf="actions['view']" class="ml-2 mr-2 TableBtn" aria-hidden="false" aria-label="view" >remove_red_eye</mat-icon></a>
+                    <a data-toggle="modal" data-target="#Popup" (click)="ActionClick('delete',element)"><mat-icon *ngIf="actions['delete']" class="ml-2 mr-2 TableBtn" aria-hidden="false" aria-label="delete" >delete</mat-icon></a>
+                </td>
+            </div>
+        </ng-container>
+      </span>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+  </div>
+  
+  <!-- Modal -->
+  <div #Popup class="modal fade" id="Popup" tabindex="-1" role="dialog" aria-labelledby="PopupTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">{{activeAction | titlecase }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="form">
+                <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+           </form>
+        </div>
+        <div class="modal-footer">
+          <button id="closeModalButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button *ngIf="activeAction == 'edit'" [disabled]="IsFormValid()" type="button" (click)="Save()" class="btn btn-primary">Save changes</button>
+          <button  *ngIf="activeAction == 'delete'" type="button" (click)="Remove()" class="btn btn-danger">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>

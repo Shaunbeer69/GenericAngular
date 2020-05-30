@@ -1,0 +1,6 @@
+{
+	"title":"vehicle",
+	"formName":"vehicle",
+	"columns":["make","model","modelYear","vinChassis"],
+	"actions":["add","edit","view","delete"]
+}

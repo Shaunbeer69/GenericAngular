@@ -1,0 +1,78 @@
+<nz-layout class="app-layout">
+  <nz-sider *ngIf="login" class="menu-sidebar"
+            nzCollapsible
+            nzWidth="256px"
+            nzBreakpoint="md"
+            [(nzCollapsed)]="isCollapsed"
+            [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img src="assets/Generic.png" alt="logo">
+        <h1>Generic Design</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="Home" nzIcon="home">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/Home">Dashboard</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzClosed nzTitle="Generic Forms" nzIcon="solution">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/GenericForm/person">Person</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/GenericForm/vehicle">Vehicle</a>
+          </li>         
+        </ul>
+      </li>
+      <li nz-submenu nzClosed nzTitle="Generic Table" nzIcon="solution">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/GenericTable/vehicle">Vehicle</a>
+          </li>     
+        </ul>
+      </li>
+      <!-- <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a>Basic Form</a>
+          </li>
+        </ul>
+      </li> -->
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header *ngIf="login">
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <i class="trigger"
+               nz-icon
+               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></i>
+        </span>
+        <span style="float: right;" (click)="Logout()">
+          <i >
+              <a class="btn border border-dark rounded m-2" routerLink="/login">Logout</a>
+          </i>
+      </span>
+      </div>
+      
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <div class="card" style="height: 100%;" >
+          <div class="card-body h-100" style="min-width: 400px;">
+            <router-outlet></router-outlet>
+          </div>
+          <div *ngIf="login && footer" class="row border justify-content-center m-0 p-1">
+            <gaip-footer></gaip-footer>
+          </div>
+        </div>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
