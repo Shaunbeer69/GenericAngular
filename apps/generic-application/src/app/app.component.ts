@@ -21,9 +21,10 @@ export class AppComponent implements OnInit,AfterViewInit,OnDestroy{
 
   constructor(private dataWidget:DataWidgetService, private loginService:LoginService, private router:Router, public translate:TranslateService)
   {
-    translate.addLangs(['en', 'fr']);  
-    if (localStorage.getItem('locale')) {  
-      const browserLang = localStorage.getItem('locale');  
+    translate.addLangs(['en', 'fr']);
+    let test = 'en';
+    if (test) {  
+      const browserLang = test;  
       translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');  
     } else {  
       localStorage.setItem('locale', 'en');  

@@ -7,6 +7,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormlyHorizontalWrapper } from './horizontal-wrapper';
 import { DataTransferInterfaceService } from '@ga/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 export function minlengthValidationMessage(err, field) {
   return `Should have atleast ${field.templateOptions.minLength} characters`;
@@ -41,6 +42,7 @@ export function maxValidationMessage(err, field) {
         { name: 'max', message: maxValidationMessage },
       ],
     }),
+    TranslateModule,
     RouterModule.forChild([
       { path: '', pathMatch: 'full', component: GenericFormComponent }
     ])

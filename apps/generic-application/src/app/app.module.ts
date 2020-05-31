@@ -21,10 +21,11 @@ import { DataWidgetService } from '@ga/data-management';
 import { LoginService } from '@ga/core';
 import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 export const createTranslateLoader = (http:HttpClient)=>
 {
-  return new TranslateHttpLoader(http,'./assests/i18n/','.json')
+  return new TranslateHttpLoader(http,'assets/i18n/','.json')
 };
 
 @NgModule({
@@ -43,6 +44,7 @@ export const createTranslateLoader = (http:HttpClient)=>
     ReactiveFormsModule,
     FormlyModule.forRoot(),
     FormlyBootstrapModule,
+    NzIconModule,
     TranslateModule.forRoot({
       loader:{
         provide:TranslateLoader,

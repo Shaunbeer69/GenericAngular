@@ -1,4 +1,9 @@
 {
-    "Vehicle":"Vehicle",
-    "Person":"Person"
+    "Common": {
+        "login": "Login"
+    },
+    "Person":{
+        "firstName":"First Name",
+        "lastName":"Last Name"
+    }
 }

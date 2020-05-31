@@ -1,4 +1,5 @@
 {
-    "Vehicle":"Vehicle",
-    "Person":"Person"
+    "Common": {
+        "login": "s'identifier"
+    }
 }

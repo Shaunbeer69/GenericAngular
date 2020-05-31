@@ -6,7 +6,7 @@ import { FieldWrapper } from '@ngx-formly/core';
   template: `
     <div class="form-group row justify-content-between mx-auto" style="width:60%; min-width:345px;">
       <label [attr.for]="id" class="col-sm-4 col-form-label " *ngIf="to.label">
-        {{ to.label }}
+        {{ to.label | translate }}
         <ng-container *ngIf="to.required && to.hideRequiredMarker !== true">*</ng-container>
       </label>
       <div class="col-sm-4" style = "min-width:350px">
