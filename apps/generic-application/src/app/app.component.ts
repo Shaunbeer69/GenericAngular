@@ -54,6 +54,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       {
         this.router.navigate(["/Home"]);
         this.SetHome();
+        this.getMenu();
       }
       else
       {

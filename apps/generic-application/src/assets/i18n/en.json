@@ -5,5 +5,9 @@
     "Person":{
         "firstName":"First Name",
         "lastName":"Last Name"
+    },
+    "Vehicle":{
+        "VinChassis":"Chassis Number"
     }
+    
 }
