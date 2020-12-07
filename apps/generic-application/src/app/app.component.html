@@ -53,7 +53,7 @@
     <ng-template #transactionContainer>
       <div class="inner-content p-0">
         <div class="card border-0" style="height: 100%;">
-          <div class="card-body h-100" style="min-width: 400px;">
+          <div class="card-body h-100 pb-2" style="min-width: 400px;">
             <div *ngIf="login" class="row justify-content-center h-100">
               <div class="col-2 pt-0 pl-2 pr-2">
                 <div *ngFor="let item of activeItem.tasks; let i = index" [attr.data-index]="i" [routerLink]="activeItem.tasks[i].subtasks[0].routerLink"  class="mt-0 mb-1 rounded" [ngClass]="{
@@ -76,12 +76,12 @@
               </div>
             </div>
           </div>
+          <div *ngIf="login && footer" class="row justify-content-center  w-100 ">
+            <gaip-footer></gaip-footer>
+          </div>
         </div>
       </div>
       </ng-template>
     </nz-content>
-    <div *ngIf="login && footer" class="row justify-content-center  w-100 ">
-      <gaip-footer></gaip-footer>
-    </div>
   </nz-layout>
 </nz-layout>
