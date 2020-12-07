@@ -1,5 +1,9 @@
 {
     "Common": {
         "login": "s'identifier"
+    },
+    "Person":{
+        "firstName":"Prenom",
+        "lastName":"Nom de famille"
     }
 }

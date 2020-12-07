@@ -1,10 +1,6 @@
 <nz-layout class="app-layout">
-  <nz-sider *ngIf="login" class="menu-sidebar"
-            nzCollapsible
-            nzWidth="256px"
-            nzBreakpoint="md"
-            [(nzCollapsed)]="isCollapsed"
-            [nzTrigger]="null">
+  <nz-sider *ngIf="login" class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">
         <img src="assets/Generic.png" alt="logo">
@@ -14,65 +10,78 @@
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <li nz-submenu nzOpen nzTitle="Home" nzIcon="home">
         <ul>
-          <li nz-menu-item nzMatchRouter>
+          <li (click)="SetHome()" nz-menu-item nzMatchRouter>
             <a routerLink="/Home">Dashboard</a>
           </li>
         </ul>
       </li>
-      <li nz-submenu nzClosed nzTitle="Generic Forms" nzIcon="solution">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/GenericForm/person">Person</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/GenericForm/vehicle">Vehicle</a>
-          </li>         
-        </ul>
-      </li>
-      <li nz-submenu nzClosed nzTitle="Generic Table" nzIcon="solution">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/GenericTable/vehicle">Vehicle</a>
-          </li>     
-        </ul>
-      </li>
-      <!-- <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
+      <li nz-submenu nzClosed nzTitle="Transaction" nzIcon="solution">
+        <ul *ngIf = "activeItem == null">
+          <li *ngFor="let item of Menu; let y = index" (click)="SetFunction(y)" [class.ant-menu-item-selected] = "" nz-menu-item nzMatchRouter>
+            <a [routerLink]="item.tasks[0].subtasks[0].routerLink">{{item.label}}</a>
           </li>
         </ul>
-      </li> -->
+           <ul *ngIf = "activeItem != null">
+          <li *ngFor="let item of Menu; let y = index" (click)="SetFunction(y)" [class.ant-menu-item-selected] = "y == activeItem.order" nz-menu-item nzMatchRouter>
+            <a [routerLink]="item.tasks[0].subtasks[0].routerLink">{{item.label}}</a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </nz-sider>
   <nz-layout>
     <nz-header *ngIf="login">
       <div class="app-header">
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <i class="trigger"
-               nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-            ></i>
+          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
         </span>
         <span style="float: right;" (click)="Logout()">
-          <i >
-              <a class="btn border border-dark rounded m-2" routerLink="/login">Logout</a>
+          <i>
+            <a class="btn border border-dark rounded m-2" routerLink="/login">Logout</a>
           </i>
-      </span>
+        </span>
       </div>
-      
     </nz-header>
-    <nz-content>
+    <nz-content class="m-2 p-0">
+
+    <ng-template [ngIf]="!transaction" [ngIfElse]="transactionContainer">
       <div class="inner-content">
-        <div class="card" style="height: 100%;" >
+        <router-outlet></router-outlet>
+      </div>
+    </ng-template>
+    
+    <ng-template #transactionContainer>
+      <div class="inner-content p-0">
+        <div class="card border-0" style="height: 100%;">
           <div class="card-body h-100" style="min-width: 400px;">
-            <router-outlet></router-outlet>
-          </div>
-          <div *ngIf="login && footer" class="row border justify-content-center m-0 p-1">
-            <gaip-footer></gaip-footer>
+            <div *ngIf="login" class="row justify-content-center h-100">
+              <div class="col-2 pt-0 pl-2 pr-2">
+                <div *ngFor="let item of activeItem.tasks; let i = index" [attr.data-index]="i" [routerLink]="activeItem.tasks[i].subtasks[0].routerLink"  class="mt-0 mb-1 rounded" [ngClass]="{
+                  'taskActive': activeTaskClass == i,
+                  'task': activeTaskClass != i}"
+                  (click)="setActive(i)"
+                  >
+                  <div class="bold m-2">{{item.label}}</div>
+                </div>
+
+              </div>
+              <div class="col-10 border rounded" style="overflow-y: scroll;">
+                <ul nz-menu nzMode="horizontal">
+                  <li *ngFor="let item of activeTask.subtasks; let x = index" class="subTask" [ngStyle]="{'display': (item.access === 'CAPTURE' || item.access === 'VIEW') ? '' : 'none' }" [routerLink]="item.routerLink" nz-menu-item nzSelected = "{{x == 0}}">
+                    <i nz-icon nzType="mail"></i>
+                    {{item.label}}
+                  </li>
+                </ul>
+                <router-outlet></router-outlet>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      </ng-template>
     </nz-content>
+    <div *ngIf="login && footer" class="row justify-content-center  w-100 ">
+      <gaip-footer></gaip-footer>
+    </div>
   </nz-layout>
 </nz-layout>

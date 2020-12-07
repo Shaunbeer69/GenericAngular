@@ -12,7 +12,7 @@
       "type":"input",
       "wrappers":["form-field-horizontal"],
       "templateOptions":{
-         "label":"Last Name"
+         "label":"Person.lastName"
       }
    },
    {

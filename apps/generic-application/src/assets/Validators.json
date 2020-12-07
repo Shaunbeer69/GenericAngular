@@ -16,6 +16,23 @@
       }
     ]
   },
+    {
+    "key": "lastName",
+    "validation": [
+      {
+        "validator": "required",
+        "value": true
+      },
+      {
+        "validator": "maxLength",
+        "value": 30
+      },
+      {
+        "validator": "minLength",
+        "value": 5
+      }
+    ]
+  },
   {
     "key": "email",
     "validation": [

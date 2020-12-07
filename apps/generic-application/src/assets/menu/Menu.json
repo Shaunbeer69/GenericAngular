@@ -1,0 +1,56 @@
+[
+    {  
+      "label": "Register First Owner",
+      "order": 0,
+      "tasks": [
+        {
+          "label": "Person",
+          "order": 0,
+          "subtasks": [
+            {
+              "label": "Person Detail",
+              "order": 0,
+              "routerLink": "/GenericForm/person",
+              "access": "CAPTURE"
+            }
+          ]
+        },
+        {
+          "label": "Vehicle",
+          "order": 1,
+          "subtasks": [
+            {
+              "label": "Vehicle",
+              "order": 0,
+              "routerLink": "/GenericForm/vehicle",
+              "access": "CAPTURE"
+            },
+            {
+              "label": "Vehicle List",
+              "order": 1,
+              "routerLink": "/GenericTable/vehicle",
+              "access": "VIEW"
+            }
+          ]
+        }
+      ]
+    },
+    {  
+      "label": "Vehicle Attribute Change",
+      "order": 1,
+      "tasks": [
+        {
+          "label": "Vehicle",
+          "order": 0,
+          "subtasks": [
+            {
+              "label": "Vehicle List",
+              "order": 0,
+              "routerLink": "/GenericTable/vehicle",
+              "access": "CAPTURE"
+            }
+          ]
+        }
+      ]
+    }
+  ]

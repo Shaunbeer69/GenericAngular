@@ -22,6 +22,10 @@ export class DataTransferInterfaceService {
     return this.http.get<any>('assets/'+type+'/'+type+'.json');
   }
 
+  getMenu() {
+    return this.http.get<any>('assets/menu/Menu.json');
+  }
+
   getListModel(type:string) {
     return this.http.get<any>('assets/'+type+'/'+type+'-list.json');
   }

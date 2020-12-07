@@ -13,9 +13,8 @@
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div> -->
-<h4>{{title | titlecase}}</h4>
-<hr />
-<div style="width: 80%;" class="mat-elevation-z8 mx-auto">
+
+<div style="width: 90%;" class="mat-elevation-z8 mx-auto mt-4">
     <mat-form-field class=" m-3" style="width: 95%;">
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">

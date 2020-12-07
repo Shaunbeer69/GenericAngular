@@ -24,6 +24,32 @@
   transition: all .3s,padding 0s;
 }
 
+.task:hover {
+  border:1px solid #1890ff;
+  color: #1890ff;
+}
+
+.task{
+  outline-style: none;
+}
+
+.taskActive{
+  border:1px solid #1890ff;
+  color: #1890ff;
+  outline-style: none;
+}
+
+.task {
+  border:1px solid rgba(0,21,41,.35);
+}
+
+.subTask
+{
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
 .trigger:hover {
   color: #1890ff;
 }
