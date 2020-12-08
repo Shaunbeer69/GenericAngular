@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from "@angular/router";
+import { FormGroup, FormControl } from '@angular/forms';
 @Injectable()
 export class DataService {
   private isTransaction: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(false);
   private isLoading: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(false);
   private buttonEventListener: BehaviorSubject<string> = new BehaviorSubject<string>("");
   public Menu: any[] = [];
+  public ActiveForm: FormGroup;
   constructor(private http: HttpClient,private router : Router) {
   }
 

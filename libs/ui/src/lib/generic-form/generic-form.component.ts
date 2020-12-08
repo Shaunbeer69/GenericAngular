@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from "rxjs/operators";
@@ -15,13 +15,15 @@ export class GenericFormComponent implements OnInit,AfterViewInit, OnDestroy {
 
   @Input() route:string;
   @Output() Model = new EventEmitter();
+
+  @ViewChild("activeForm") Form;
   public path: string;
   private $onDestroy: Subject<any> = new Subject<any>();
   public form = new FormGroup({});
   public model: any = {};
   public options: FormlyFormOptions = {};
   public fields: FormlyFieldConfig[] = [];
-  public extra: any = 
+  public extra: any =
   {
     "button":
       {
@@ -35,8 +37,8 @@ export class GenericFormComponent implements OnInit,AfterViewInit, OnDestroy {
     routes: ActivatedRoute,
     private dataTransferInterfaceService: DataTransferInterfaceService,
     private DataService: DataService) {
-    this.DataService.SetIsTransaction(true);  
-    
+    this.DataService.SetIsTransaction(true);
+
     routes.paramMap.pipe(takeUntil(this.$onDestroy)).subscribe(paraMap => {
       this.path = routes.snapshot['_routerState'].url;
       if(this.route == undefined && paraMap['params'].parameter != undefined)
@@ -62,7 +64,7 @@ export class GenericFormComponent implements OnInit,AfterViewInit, OnDestroy {
   }
 
   async GetData(type: string) {
-    
+
     let result = await this.dataTransferInterfaceService.getInterfaceData(type).toPromise();
     this.model = result[0];
     let prevalidatorFields: FormlyFieldConfig[] = result[1];
@@ -72,7 +74,9 @@ export class GenericFormComponent implements OnInit,AfterViewInit, OnDestroy {
     {
       this.extra = result[2];
     }
-    
+    console.log(this.Form);
+    this.DataService.ActiveForm = this.Form.form;
+
   }
 
   ApplyValidators(ValidatorFields: any[], Fields: FormlyFieldConfig[]): FormlyFieldConfig[] {

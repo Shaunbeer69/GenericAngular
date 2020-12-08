@@ -53,35 +53,34 @@
     <ng-template #transactionContainer>
       <div class="inner-content p-0">
         <div class="card border-0" style="height: 100%;">
-          <div class="card-body h-100 pb-2" style="min-width: 400px;">
+          <div class="card-body h-100 pb-2 rounded" style="min-width: 400px;">
             <div *ngIf="login" class="row justify-content-center h-100">
               <div class="col-2 pt-0 pl-2 pr-2">
-                <div *ngFor="let item of activeItem.tasks; let i = index" [attr.data-index]="i" [routerLink]="activeItem.tasks[i].subtasks[0].routerLink"  class="mt-0 mb-1 rounded" [ngClass]="{
+                <div *ngFor="let item of activeItem.tasks; let i = index" [ngStyle]="{'display': (item.access === 'CAPTURE' || item.access === 'VIEW') ? '' : 'none' }" [attr.data-index]="i" [routerLink]="activeItem.tasks[i].subtasks[0].routerLink"  class="mt-0 mb-1 rounded" [ngClass]="{
                   'taskActive': activeTaskClass == i,
                   'task': activeTaskClass != i}"
                   (click)="setActive(i)"
                   >
-                  <div class="bold m-2">{{item.label}}</div>
+                  <div class="row justify-content-between bold m-2"><div>{{item.label}}</div><div class="ml-4 mt-1" nz-icon [nzType]="getTaskStatus(item)"></div></div>
                 </div>
 
               </div>
               <div class="col-10 border rounded" style="overflow-y: scroll;">
                 <ul nz-menu nzMode="horizontal">
                   <li *ngFor="let item of activeTask.subtasks; let x = index" class="subTask" [ngStyle]="{'display': (item.access === 'CAPTURE' || item.access === 'VIEW') ? '' : 'none' }" [routerLink]="item.routerLink" nz-menu-item nzSelected = "{{x == 0}}">
-                    <i nz-icon nzType="mail"></i>
-                    {{item.label}}
+                    <div class="row justify-content-center "><div class="bold text-center">{{item.label}}</div><div class="m-3" nz-icon [nzType]="getStatus(item)"></div></div>
                   </li>
                 </ul>
                 <router-outlet></router-outlet>
               </div>
             </div>
           </div>
-          <div *ngIf="login && footer" class="row justify-content-center  w-100 ">
-            <gaip-footer></gaip-footer>
-          </div>
         </div>
       </div>
-      </ng-template>
-    </nz-content>
+    </ng-template>
+  </nz-content>
+  <div *ngIf="login && footer" class="row justify-content-center  w-100 ">
+    <gaip-footer></gaip-footer>
+  </div>
   </nz-layout>
 </nz-layout>

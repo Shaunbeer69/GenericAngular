@@ -1,6 +1,6 @@
 
 <form class="mt-5" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+    <formly-form #activeForm [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
     <button *ngIf="extra.button.value" [disabled] = "extra.button.disabled" type="submit" class="btn btn-primary submit-button col-sm-12 mt-5">Submit</button>
 </form>
 

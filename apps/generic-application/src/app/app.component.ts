@@ -21,6 +21,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public activeItem = null;
   public activeTask = null;
+  public activeSubTask = null;
 
   $onDestroy: Subject<any> = new Subject<any>();
 
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     public translate: TranslateService,
     private DTIS: DataTransferInterfaceService,
     private componentFactoryResolver: ComponentFactoryResolver,
-    public viewContainerRef: ViewContainerRef
+    public containerRef: ViewContainerRef
   ) {
     translate.addLangs(['en', 'fr']);
     let lang = 'en';
@@ -47,6 +48,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.activeItem = null;
     this.activeTask = null;
+    this.activeSubTask = null;
     this.transaction = false;
 
     this.dataService.GetIsLoading().pipe(takeUntil(this.$onDestroy)).subscribe((loadingBool: Boolean) => {
@@ -58,6 +60,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         this.router.navigate(["/Home"]);
         this.SetHome();
         this.getMenu();
+          this.isCollapsed = false;
       }
       else {
         this.getMenu();
@@ -83,6 +86,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   public setActive(numb: number) {
     this.activeTaskClass = numb;
     this.activeTask = this.activeItem.tasks[numb];
+    this.activeSubTask = this.activeTask.subtasks[0];
   }
 
   public SetHome() {
@@ -93,6 +97,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   public SetFunction(_function: any) {
+    this.isCollapsed = true;
     if (_function.function) {
       this.createComponent(_function.function + "Component");
     }
@@ -100,6 +105,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.activeTaskClass = 0;
     this.activeItem = this.dataService.Menu[_function.order];
     this.activeTask = this.activeItem.tasks[0];
+    this.activeSubTask = this.activeTask.subtasks[0];
     this.transaction = true;
   }
 
@@ -109,7 +115,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     const factories = object.declarations.concat(object.entryComponents, object.imports, object.providers);
     const factoryClass = <Type<any>>factories.find((x: any) => x.name === type);
     const factory = this.componentFactoryResolver.resolveComponentFactory(factoryClass);
-    let cmpRef = this.viewContainerRef.createComponent(factory);
+    let cmpRef = this.containerRef.createComponent(factory);
     cmpRef.instance.message = "message";
     cmpRef.instance.ShowParent();
   }
@@ -120,6 +126,67 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.navigate(['/login']);
     sessionStorage.setItem('login', 'false');
     this.dataService.Menu = [];
+  }
+
+
+  getTaskStatus(task:any)
+  {
+    // if(this.activeSubTask.routerLink == task.subtasks[0].routerLink)
+    // {
+    //   let valid = this.activeTask.subtasks.find(x=>{ return x.icon == "close"})
+    
+    //   if(valid == undefined)
+    //   {
+    //     this.activeTask.icon = "check";
+    //   }
+    //   else
+    //   {
+    //     this.activeTask.icon = "close";
+    //   }
+
+    //   return this.activeTask.icon;
+    // }
+    // else
+    // {
+       return task.icon;
+    // }
+  }
+
+  getStatus(item:any)
+  {
+    // if(this.activeSubTask.routerLink == item.routerLink)
+    // {
+    //   if(this.dataService.ActiveForm && Object.keys(this.dataService.ActiveForm.controls).length > 0)
+    //   {
+    //       if(this.dataService.ActiveForm.status)
+    //       {
+    //          if(this.dataService.ActiveForm.status.includes("INVALID"))
+    //           {
+    //             this.activeSubTask.icon = "close";
+    //           }
+    //           else
+    //           {
+    //             this.activeSubTask.icon = "check";  
+    //           }
+    //       }
+    //       else
+    //       {
+    //         this.activeSubTask.icon = "close";
+    //       }
+    //   }
+    //   else
+    //   {
+    //     this.activeSubTask.icon = "close";
+    //   }
+    //    return this.activeSubTask.icon;
+    // }
+    // else
+    // {
+       return item.icon;
+    //}
+    
+    
+
   }
 
   ngOnDestroy(): void {

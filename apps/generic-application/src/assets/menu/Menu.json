@@ -8,30 +8,38 @@
         {
           "label": "Person",
           "order": 0,
+          "icon":"close",
+          "access": "CAPTURE",
           "subtasks": [
             {
               "label": "Person Detail",
               "order": 0,
+              "icon":"close",
               "routerLink": "/GenericForm/person",
               "access": "CAPTURE"
             }
+            
           ]
         },
         {
           "label": "Vehicle",
           "order": 1,
+          "icon":"close",
+          "access": "CAPTURE",
           "subtasks": [
             {
               "label": "Vehicle",
               "order": 0,
+              "icon":"close",
               "routerLink": "/GenericForm/vehicle",
               "access": "CAPTURE"
             },
             {
               "label": "Vehicle List",
               "order": 1,
+              "icon":"close",
               "routerLink": "/GenericTable/vehicle",
-              "access": "VIEW"
+              "access": "CAPTURE"
             }
           ]
         }
@@ -44,10 +52,13 @@
         {
           "label": "Vehicle",
           "order": 0,
+          "access": "CAPTURE",
+          "icon":"close",
           "subtasks": [
             {
               "label": "Vehicle List",
               "order": 0,
+              "icon":"close",
               "routerLink": "/GenericTable/vehicle",
               "access": "CAPTURE"
             }
