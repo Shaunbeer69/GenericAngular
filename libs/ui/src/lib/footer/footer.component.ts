@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { DataWidgetService } from '@ga/data-management';
+import { DataService } from '@ga/data-management';
 
 @Component({
   selector: 'gaip-footer',
@@ -8,11 +8,11 @@ import { DataWidgetService } from '@ga/data-management';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(private dataWidgetService: DataWidgetService) { }
+  constructor(private DataService: DataService) { }
 
   onClick(event:string) {
     document.getElementById("closeModal").click()
-    this.dataWidgetService.SetEventLister(event);
+    this.DataService.SetEventLister(event);
   }
 
   ngOnInit(): void {

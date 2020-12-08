@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from "@angular/router";
 @Injectable()
-export class DataWidgetService {
+export class DataService {
   private isTransaction: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(false);
   private isLoading: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(false);
   private buttonEventListener: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  public Menu: any[] = [];
   constructor(private http: HttpClient,private router : Router) {
   }
 
@@ -16,7 +17,7 @@ export class DataWidgetService {
   }
 
   public SetEventLister(event: string) {
-    if (event == "cancel") 
+    if (event == "cancel")
     {
       this.router.navigate(['/Home']);
        this.buttonEventListener.next(null);

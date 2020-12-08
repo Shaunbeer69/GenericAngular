@@ -17,12 +17,12 @@
       </li>
       <li nz-submenu nzClosed nzTitle="Transaction" nzIcon="solution">
         <ul *ngIf = "activeItem == null">
-          <li *ngFor="let item of Menu; let y = index" (click)="SetFunction(y)" [class.ant-menu-item-selected] = "" nz-menu-item nzMatchRouter>
+          <li *ngFor="let item of dataService.Menu; let y = index" (click)="SetFunction(item)" [class.ant-menu-item-selected] = "" nz-menu-item nzMatchRouter>
             <a [routerLink]="item.tasks[0].subtasks[0].routerLink">{{item.label}}</a>
           </li>
         </ul>
            <ul *ngIf = "activeItem != null">
-          <li *ngFor="let item of Menu; let y = index" (click)="SetFunction(y)" [class.ant-menu-item-selected] = "y == activeItem.order" nz-menu-item nzMatchRouter>
+          <li *ngFor="let item of dataService.Menu; let y = index" (click)="SetFunction(item);" [class.ant-menu-item-selected] = "y == activeItem.order" nz-menu-item nzMatchRouter>
             <a [routerLink]="item.tasks[0].subtasks[0].routerLink">{{item.label}}</a>
           </li>
         </ul>
@@ -49,7 +49,7 @@
         <router-outlet></router-outlet>
       </div>
     </ng-template>
-    
+
     <ng-template #transactionContainer>
       <div class="inner-content p-0">
         <div class="card border-0" style="height: 100%;">

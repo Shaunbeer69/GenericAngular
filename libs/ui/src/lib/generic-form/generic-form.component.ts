@@ -5,7 +5,7 @@ import { takeUntil } from "rxjs/operators";
 import { FormGroup, Validators } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { DataTransferInterfaceService } from "@ga/core";
-import { DataWidgetService } from '@ga/data-management';
+import { DataService } from '@ga/data-management';
 @Component({
   selector: 'gaip-generic-form',
   templateUrl: './generic-form.component.html',
@@ -34,8 +34,8 @@ export class GenericFormComponent implements OnInit,AfterViewInit, OnDestroy {
   constructor(
     routes: ActivatedRoute,
     private dataTransferInterfaceService: DataTransferInterfaceService,
-    private dataWidgetService: DataWidgetService) {
-    this.dataWidgetService.SetIsTransaction(true);  
+    private DataService: DataService) {
+    this.DataService.SetIsTransaction(true);  
     
     routes.paramMap.pipe(takeUntil(this.$onDestroy)).subscribe(paraMap => {
       this.path = routes.snapshot['_routerState'].url;
@@ -50,7 +50,7 @@ export class GenericFormComponent implements OnInit,AfterViewInit, OnDestroy {
     {
       this.GetData(this.route);
     }
-    this.dataWidgetService.EventListen().subscribe((event:string)=>{
+    this.DataService.EventListen().subscribe((event:string)=>{
       if(event == "submit")
       {
         this.onSubmit();

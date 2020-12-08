@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataWidgetService } from '@ga/data-management';
+import { DataService } from '@ga/data-management';
 import { LoginService } from '@ga/core';
 
 @Component({
@@ -9,8 +9,8 @@ import { LoginService } from '@ga/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private dataWidgetService:DataWidgetService,private loginService:LoginService) {
-    this.dataWidgetService.SetIsTransaction(false); 
+  constructor(private DataService:DataService,private loginService:LoginService) {
+    this.DataService.SetIsTransaction(false); 
 
    }
    ngOnInit(): void {

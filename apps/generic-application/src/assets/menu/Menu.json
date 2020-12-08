@@ -1,6 +1,8 @@
 [
-    {  
+    {
       "label": "Register First Owner",
+      "transaction":"Transaction",
+      "function":"FunctionOne",
       "order": 0,
       "tasks": [
         {
@@ -35,7 +37,7 @@
         }
       ]
     },
-    {  
+    {
       "label": "Vehicle Attribute Change",
       "order": 1,
       "tasks": [

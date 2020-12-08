@@ -17,7 +17,7 @@ import { UiModule, FooterComponent, LoginModule } from '@ga/ui';
 import { TransactionModule } from '@ga/transaction';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
-import { DataWidgetService } from '@ga/data-management';
+import { DataService, FunctionOneComponent, TransactionComponent } from '@ga/data-management';
 import { LoginService } from '@ga/core';
 import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
@@ -29,7 +29,7 @@ export const createTranslateLoader = (http:HttpClient)=>
 };
 
 @NgModule({
-  declarations: [AppComponent,FooterComponent],
+  declarations: [AppComponent,FooterComponent, TransactionComponent, FunctionOneComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -53,7 +53,8 @@ export const createTranslateLoader = (http:HttpClient)=>
       }
     })
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US },DataWidgetService, LoginService],
-  bootstrap: [AppComponent]
+  providers: [{ provide: NZ_I18N, useValue: en_US },DataService, LoginService],
+  bootstrap: [AppComponent],
+  entryComponents:[TransactionComponent, FunctionOneComponent]
 })
 export class AppModule {}

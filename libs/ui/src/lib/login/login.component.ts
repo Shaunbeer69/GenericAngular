@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { LoginService } from '@ga/core';
 import { Router } from '@angular/router';
-import { DataWidgetService } from '@ga/data-management';
+import { DataService } from '@ga/data-management';
 
 @Component({
   selector: 'gaip-login',
@@ -11,7 +11,7 @@ import { DataWidgetService } from '@ga/data-management';
 export class LoginComponent implements OnInit, AfterViewInit {
 
   public param = "login";
-  constructor(private loginService:LoginService, private router:Router, private dataWidgetService:DataWidgetService) { }
+  constructor(private loginService:LoginService, private router:Router, private DataService:DataService) { }
 
 
   ngOnInit(): void {
@@ -28,5 +28,5 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/Home']);
     sessionStorage.setItem('login','true')
   }
- 
+
 }
